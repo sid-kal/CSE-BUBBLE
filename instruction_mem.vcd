@@ -1,0 +1,26 @@
+$date
+	Sun Apr 02 05:58:20 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 32 ! instruction [31:0] $end
+$var reg 16 " address [15:0] $end
+$scope module uut $end
+$var wire 16 # address [15:0] $end
+$var wire 32 $ instruction [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b110 $
+b100 #
+b100 "
+b110 !
+$end
+#100

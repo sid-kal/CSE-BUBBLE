@@ -10,7 +10,6 @@ module tb();
         address=0;
     end
 
-
     initial begin
         #10
         address=1;

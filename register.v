@@ -1,39 +1,27 @@
-module register( read_address1, read_address2, write_address, write_enable , data_in, data_out1, data_out2 );
+module register( read_address1, read_address2, write_address, write_enable , data_in, data_out1, data_out2 , pc);
 
         input [31:0] data_in;
         input write_enable;
         input [4:0]write_address;
         input [4:0]read_address1;
         input [4:0]read_address2;
-
+        input [15:0]pc;
         output [31:0] data_out1;
         output [31:0] data_out2;
 
-        reg [31:0] mem [23:0]; 
+        reg [31:0] mem [31:0]; 
 
+        integer i;
         initial begin
-            mem[0]=2;
-            mem[1]=3;
-            mem[2]=4;
-            mem[3]=5;
-            mem[4]=6;
-            mem[5]=7;
-            mem[6]=8;
-            mem[7]=9;
-            mem[8]=10;
-            mem[9]=11;
-            mem[10]=12;
-            mem[11]=13;
-            mem[12]=14;
-            mem[13]=15;
-            mem[14]=16;
+            for (i = 0; i<32; i=i+1) begin
+                mem[i]=0;
+            end
         end
 
-        always @(*) begin
-            
-            if(write_enable && write_address<=23) begin
-                mem[write_address]=data_in;
-            end
+        always @(pc) begin
+                if(write_enable) begin
+                     mem[write_address]=data_in;
+                end
             
         end
 
@@ -41,10 +29,14 @@ module register( read_address1, read_address2, write_address, write_enable , dat
         assign data_out2=(read_address2<=23)?mem[read_address2]:0;
 
 
-    // initial begin
-    //         #90 $display("2=%d, 5=%d, 8=%d, 11=%d", mem[2], mem[5], mem[8], mem[11]);
-    //     //2->5   5-> 1   8->17  11->1 
-    // end
+    initial begin
+          #5    $display("%d", mem[14]);
+          #20   $display("%d", mem[14]);
+          #20   $display("%d", mem[14]);
+          #20   $display("%d", mem[14]);
+          #20   $display("%d", mem[14]);
+          #20   $display("%d", mem[14]);
+    end
 
 
 endmodule

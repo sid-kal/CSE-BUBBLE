@@ -46,7 +46,7 @@ module main(clk);
 
     instruction_split uut2(instruction, rs1, rs2, r_dest);
 
-    register uut3(rs1, rs2, r_dest, write_enable , write_data, d1, d2);
+    register uut3(rs1, rs2, r_dest, write_enable , write_data, d1, d2, pc);
 
     control_unit uut4(instruction, d1, d2, write_data, write_enable, control_to_alu1, control_to_alu2, alu_to_control,control_branch_flag,control_pc_offset,  data_mem_write_enable, control_to_adder_base, control_to_adder_offset, data_mem_to_control_data, control_to_data_mem_data);
 
@@ -78,13 +78,13 @@ module main(clk);
         pc=branch_mux_result;
     end
 
-    initial begin
-        #5
-        forever begin
-             $display("%d", pc);
-            #20;
-        end
-    end
+    // initial begin
+    //     #5;
+    //     forever begin
+    //          $display("%d", pc);
+    //         #20;
+    //     end
+    // end
     // initial begin
     //     #100 $finish;
     // end

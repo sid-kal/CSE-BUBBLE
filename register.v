@@ -13,9 +13,12 @@ module register( read_address1, read_address2, write_address, write_enable , dat
 
         integer i;
         initial begin
-            for (i = 0; i<32; i=i+1) begin
+            mem[0]=1;
+            for (i = 1; i<32; i=i+1) begin
                 mem[i]=0;
             end
+            mem[16]=5;
+            mem[17]=2;
         end
 
         always @(pc) begin

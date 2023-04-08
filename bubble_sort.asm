@@ -31,7 +31,7 @@ inner_loop:
 
 beq $s3, $t3, end_inner_loop
 
-add $t4, $s3, 0
+addi $t4, $s3, 0
 
 sll $t4, $t4, 2
 

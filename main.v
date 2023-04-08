@@ -67,7 +67,7 @@ module main(clk);
 
     adder uut10_not_jump(one, pc_32_bit , if_not_branch_result);
 
-    mux  uut11(if_not_branch_result, if_branch_result, branch_mux_select, branch_mux_result);
+    mux  uut11(if_not_branch_result, control_pc_offset, branch_mux_select, branch_mux_result);
     
     // initial begin
     //     forever #10 $display("%d\n", instruction);
@@ -79,9 +79,9 @@ module main(clk);
     end
 
     // initial begin
-    //     #5;
+    //     #4;
     //     forever begin
-    //          $display("%d", pc);
+    //          $display( "pc: %d",pc);
     //         #20;
     //     end
     // end

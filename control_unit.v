@@ -191,11 +191,13 @@ module control_unit(instruction, regin1, regin2, regout, write_enable, aluout1, 
 
     assign aluout1=regin1;
     assign aluout2=(x==4 || x==5 || x==8 || x==9 || x==10 || x==11 || x==24)?instruction[15:0]:regin2;
-    assign offset=(x==20 || x==22)?instruction[25:0]:((x==21)?regin1:{instruction[25:21], instruction[10:0]});//note this offset is not suitable for all jump operations
+    // assign offset=(x==20 || x==22)?instruction[25:0]:((x==21)?regin1:{instruction[25:21], instruction[10:0]});//note this offset is not suitable for all jump operations
+    assign offset=(x==20 || x==22)?instruction[20:0]:((x==21)?regin1: instruction[10:0]);//note this offset is not suitable for all jump operations
     assign regout=(x==12)?data_mem_read_data: aluin;
-    assign data_mem_base_address=regin2;
+    assign data_mem_base_address=(x==12)?regin1:regin2;
     assign data_mem_write_data=regin1;
-    assign data_mem_offset=x==12?instruction[15:0]:{instruction[25:21], instruction[10:0]};
+    // assign data_mem_offset=x==12?instruction[15:0]:{instruction[25:21], instruction[10:0]};
+    assign data_mem_offset=x==12?instruction[15:0]: instruction[10:0];
     assign branch=( x==14 || x==15 || x==16 || x==17 || x==18 || x==19 || x==20 || x==21 || x==22)?1:0;
     assign write_enable=(x==13 || x==14 || x==15 || x==16 || x==17 || x==18 || x==19)?0:1;
     assign data_mem_write_enable=(x==13)?1:0;
@@ -203,9 +205,9 @@ module control_unit(instruction, regin1, regin2, regout, write_enable, aluout1, 
 
 
     // initial begin
-    //     #5 $display("x: %b", x);
+    //     #5;
+    //          $display("%d", data_mem_read_data);
     // end
-
 
     // always @* begin
 

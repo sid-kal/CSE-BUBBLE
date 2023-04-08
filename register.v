@@ -17,11 +17,14 @@ module register( read_address1, read_address2, write_address, write_enable , dat
             for (i = 1; i<32; i=i+1) begin
                 mem[i]=0;
             end
-            mem[16]=5;
+            // mem[16]=5;
+            mem[16]=10;
             mem[17]=2;
+
         end
 
         always @(pc) begin
+            
                 if(write_enable) begin
                      mem[write_address]=data_in;
                 end
@@ -32,14 +35,13 @@ module register( read_address1, read_address2, write_address, write_enable , dat
         assign data_out2=(read_address2<=23)?mem[read_address2]:0;
 
 
-    initial begin
-          #5    $display("%d", mem[14]);
-          #20   $display("%d", mem[14]);
-          #20   $display("%d", mem[14]);
-          #20   $display("%d", mem[14]);
-          #20   $display("%d", mem[14]);
-          #20   $display("%d", mem[14]);
-    end
+    // initial begin
+    //       #5    
+    //       forever begin
+    //         $display("%d", mem[0]);
+    //         #20;
+    //       end
+    // end
 
 
 endmodule

@@ -17,7 +17,7 @@ module tb();
 
 
     initial begin
-        #200 $finish;
+        #60000 $finish;
         $dumpfile("main_tb.vcd");
         $dumpvars(0, tb);
     end

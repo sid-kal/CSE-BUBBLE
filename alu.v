@@ -48,5 +48,4 @@ module alu(instruction, a, b, c, zero);
         zero_temp=(c_temp==0)?1:0;
     end
 
-
 endmodule

@@ -6,46 +6,43 @@ module alu(instruction, a, b, c, zero);
     input [31:0] b;
     output [31:0] c;
     output zero;
-    reg zero_temp;
-    reg [31:0] c_temp;
 
-    assign c=c_temp;
-    assign zero=zero_temp;
+    wire [31:0] values[24:0];
 
-    always @* begin
+        assign values[0]= a+b;
+        assign values[1]= a-b;
+        assign values[2]= a+b;
+        assign values[3]= a-b;
+        assign values[4]= a+b;
+        assign values[5]= a+b;
 
-        if(instruction[31:26]==0) c_temp=a+b;
-        if(instruction[31:26]==1) c_temp=a-b;
-        if(instruction[31:26]==2) c_temp=a+b;
-        if(instruction[31:26]==3) c_temp=a-b;
-        if(instruction[31:26]==4) c_temp=a+b;
-        if(instruction[31:26]==5) c_temp=a+b;
+        assign values[6]= a & b;
+        assign values[7]= a | b;
+        assign values[8]= a & b;
+        assign values[9]= a | b;
+        assign values[10]=a << b;
+        assign values[11]=a >> b;
 
-        if(instruction[31:26]==6) c_temp=a & b;
-        if(instruction[31:26]==7) c_temp=a | b;
-        if(instruction[31:26]==8) c_temp=a & b;
-        if(instruction[31:26]==9) c_temp=a | b;
-        if(instruction[31:26]==10) c_temp=a << b;
-        if(instruction[31:26]==11) c_temp=a >> b;
+        assign values[12]=1;
+        assign values[13]=1;
 
-        if(instruction[31:26]==12) c_temp=1;
-        if(instruction[31:26]==13) c_temp=1;
+        assign values[14]=(a!=b);
+        assign values[15]= (a == b);
+        assign values[16]=(a<=b);
+        assign values[17]=(a<b);
+        assign values[18]=(a>=b);
+        assign values[19]=(a>b);
 
-        if(instruction[31:26]==14) c_temp=(a!=b);
-        if(instruction[31:26]==15) c_temp= (a == b);
-        if(instruction[31:26]==16) c_temp=(a<=b);
-        if(instruction[31:26]==17) c_temp=(a<b);
-        if(instruction[31:26]==18) c_temp=(a>=b);
-        if(instruction[31:26]==19) c_temp=(a>b);
+        assign values[20]=0;
+        assign values[21]=0;
+        assign values[22]=0;
 
-        if(instruction[31:26]==20) c_temp=0;
-        if(instruction[31:26]==21) c_temp=0;
-        if(instruction[31:26]==22) c_temp=0;
+        assign values[23]=(a<b)?1:0;
+        assign values[24]=(a<b)?1:0;
 
-        if(instruction[31:26]==23) c_temp=(a<b)?1:0;
-        if(instruction[31:26]==24) c_temp=(a<b)?1:0;
+        assign zero=(values[instruction[31:26]]==0)?1:0;
 
-        zero_temp=(c_temp==0)?1:0;
-    end
+        assign c=values[instruction[31:26]];
+
 
 endmodule

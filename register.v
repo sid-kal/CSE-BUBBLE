@@ -17,8 +17,6 @@ module register( read_address1, read_address2, write_address, write_enable , dat
             for (i = 1; i<32; i=i+1) begin
                 mem[i]=0;
             end
-            // mem[16]=5;
-            mem[16]=10;
             mem[17]=2;
 
         end

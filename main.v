@@ -52,7 +52,7 @@ module main(clk);
 
     adder uut5_data_mem(control_to_adder_offset, control_to_adder_base, data_mem_adder_output);
 
-    data_memory uut6(data_mem_adder_output, data_mem_adder_output, data_mem_write_enable , control_to_data_mem_data, data_mem_to_control_data);
+    data_memory uut6(data_mem_adder_output, data_mem_adder_output, data_mem_write_enable , control_to_data_mem_data, data_mem_to_control_data, pc);
 
     alu uut7(instruction, control_to_alu1, control_to_alu2, alu_to_control, alu_zero);
 
@@ -79,7 +79,7 @@ module main(clk);
     end
 
     // initial begin
-    //     #4;
+    //     #5;
     //     forever begin
     //          $display( "pc: %d",pc);
     //         #20;

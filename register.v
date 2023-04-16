@@ -29,17 +29,15 @@ module register( read_address1, read_address2, write_address, write_enable , dat
             
         end
 
-        assign data_out1=(read_address1<=23)?mem[read_address1]:0;
-        assign data_out2=(read_address2<=23)?mem[read_address2]:0;
+        assign data_out1=mem[read_address1];
+        assign data_out2=mem[read_address2];
 
 
-    // initial begin
-    //       #5    
-    //       forever begin
-    //         $display("%d", mem[0]);
-    //         #20;
-    //       end
-    // end
+    //initial begin
+    //       $display("%d", mem[16]);
+    //        
+    //      
+    //end
 
 
 endmodule

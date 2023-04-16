@@ -1,9 +1,10 @@
-module data_memory( read_address, write_address, write_enable , data_in, data_out );
+module data_memory( read_address, write_address, write_enable , data_in, data_out,pc );
 
         input [31:0] data_in;
         input write_enable;
         input [31:0]write_address;
         input [31:0]read_address;
+        input [15:0]pc;
 
         output [31:0] data_out;
 
@@ -55,7 +56,17 @@ module data_memory( read_address, write_address, write_enable , data_in, data_ou
 
         end
 
-        always @(*) begin
+
+        // initial begin
+        
+        //     #5.5
+        //     forever begin
+        //         $display("%d, %d, %d",write_enable, write_address, data_in);
+        //         #20;
+        //     end
+        // end
+
+        always @(pc) begin
             
             if(write_enable && write_address<=65535) begin
                 mem[write_address]=data_in;
@@ -67,8 +78,17 @@ module data_memory( read_address, write_address, write_enable , data_in, data_ou
 
         initial begin
             
-            #90000 
-            for(i=0;i<25;i=i+1) $display("%d", mem[i+2]);
+            // #6
+            // forever begin
+            //     $display("n=%d, mem[2]=%d, mem[3]=%d, mem[4]=%d",mem[1], mem[2], mem[3], mem[4]);
+            //     #20;
+            // end
+
+            
+            #190000
+            for (i = 2; i<27; i=i+1) begin
+                $display("%d", mem[i]);
+            end
         end
 
 endmodule

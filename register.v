@@ -1,3 +1,4 @@
+//Siddharth Kalra(211032) and Chitwan Goel 210295
 module register( read_address1, read_address2, write_address, write_enable , data_in, data_out1, data_out2 , pc);
 
         input [31:0] data_in;
@@ -17,22 +18,19 @@ module register( read_address1, read_address2, write_address, write_enable , dat
             for (i = 1; i<32; i=i+1) begin
                 mem[i]=0;
             end
-            // mem[16]=5;
-            mem[16]=10;
-            mem[17]=2;
-
+            mem[17]=32'b10;
         end
 
         always @(pc) begin
-            
+                #2            
                 if(write_enable) begin
                      mem[write_address]=data_in;
                 end
             
         end
 
-        assign data_out1=(read_address1<=23)?mem[read_address1]:0;
-        assign data_out2=(read_address2<=23)?mem[read_address2]:0;
+        assign data_out1 = mem[read_address1];
+        assign data_out2 = mem[read_address2];
 
 
     // initial begin

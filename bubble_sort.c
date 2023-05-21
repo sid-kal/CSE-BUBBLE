@@ -1,3 +1,4 @@
+//Siddharth Kalra(211032) and Chitwan Goel 210295
 #include <stdio.h>
 
 void bubbleSort(int array[], int n) {
@@ -5,7 +6,6 @@ void bubbleSort(int array[], int n) {
     for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
             if (array[j] > array[j+1]) {
-                // Swap the elements
                 temp = array[j];
                 array[j] = array[j+1];
                 array[j+1] = temp;
@@ -18,15 +18,7 @@ int main() {
     int data[] = { 5, 9, 3, 1, 8, 6 };
     int size = sizeof(data) / sizeof(data[0]);
     int i;
-
-    printf("Before sorting:\n");
-    for (i = 0; i < size; i++) {
-        printf("%d ", data[i]);
-    }
-
     bubbleSort(data, size);
-
-    printf("\nAfter sorting:\n");
     for (i = 0; i < size; i++) {
         printf("%d ", data[i]);
     }

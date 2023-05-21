@@ -1,3 +1,4 @@
+//Siddharth Kalra(211032) and Chitwan Goel 210295
 `include "instruction_mem.v"
 `include "data_mem.v"
 `include "adder.v"
@@ -7,15 +8,15 @@
 `include "alu.v"
 `include "instruction_splitter.v"
 
-module main(clk);
+module main(clk, pc, instruction);
 
     //wires instruction, rs1, rs2, r_dest, d1, d2, write_enable, write_data, data_mem_to_control_data, control_to_data_mem_data, control_to_adder_base, control_to_adder_offset, data_mem_adder_output, data_mem_write_enable, alu_to_control, control_to_alu1, control_to_alu2, alu_zero, control_branch_flag, control_pc_offset, branch_mux_select, if_branch_result, if_not_branch_result, branch_mux_result
 
     input clk;
 
-    reg [15:0] pc=0;
+    output reg [15:0] pc=0;
 
-    wire [31:0]instruction;
+    output wire [31:0]instruction;
     wire [4:0] rs1;
     wire [4:0] rs2;
     wire [4:0] r_dest;
@@ -52,7 +53,7 @@ module main(clk);
 
     adder uut5_data_mem(control_to_adder_offset, control_to_adder_base, data_mem_adder_output);
 
-    data_memory uut6(data_mem_adder_output, data_mem_adder_output, data_mem_write_enable , control_to_data_mem_data, data_mem_to_control_data);
+    data_memory uut6(data_mem_adder_output, data_mem_adder_output, data_mem_write_enable , control_to_data_mem_data, data_mem_to_control_data, pc);
 
     alu uut7(instruction, control_to_alu1, control_to_alu2, alu_to_control, alu_zero);
 

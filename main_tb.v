@@ -3,8 +3,9 @@
 module tb();
 
     reg clk;
-
-    main uut(clk);
+    wire [31:0] instruction;
+    wire [15:0] pc;
+    main uut(clk, pc, instruction);
     initial begin
         clk=0;
     end
@@ -17,9 +18,9 @@ module tb();
 
 
     initial begin
-        #60000 $finish;
         $dumpfile("main_tb.vcd");
         $dumpvars(0, tb);
+        #2000000 $finish;
     end
 
 endmodule

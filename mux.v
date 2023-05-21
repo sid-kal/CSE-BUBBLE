@@ -1,3 +1,4 @@
+//Siddharth Kalra(211032) and Chitwan Goel 210295
 module mux(input_1, input_2, select, output_value);
 
 parameter  N=32;

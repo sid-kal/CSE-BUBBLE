@@ -1,3 +1,4 @@
+#Siddharth Kalra(211032) and Chitwan Goel 210295
 #MIPS CODE FOR BUBBLE SORT
 
 .data
